@@ -34,19 +34,16 @@ authForm.addEventListener('submit', (e) => {
         // Correct password
         authError.textContent = '';
         authScreen.classList.remove('active');
+        document.body.classList.remove('auth-active');
 
         setTimeout(() => {
             questionScreen.classList.add('active');
         }, 500);
     } else {
         // Wrong password
-        authError.textContent = 'Mot de passe incorrect... 💔';
+        authError.textContent = 'Incorrect password. Please try again.';
         passwordInput.value = '';
-        passwordInput.classList.add('shake');
-
-        setTimeout(() => {
-            passwordInput.classList.remove('shake');
-        }, 500);
+        passwordInput.focus();
     }
 });
 
@@ -281,5 +278,8 @@ function createBloodDrips() {
 
 // Initialize on load
 window.addEventListener('load', () => {
+    // Set plain background for auth screen
+    document.body.classList.add('auth-active');
+
     createFloatingHearts();
 });
