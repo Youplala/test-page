@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veux-tu être ma Valentine? 💕</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=3004">
+</head>
+<body>
+    <!-- Floating hearts background -->
+    <div class="hearts-container" id="heartsContainer"></div>
+
+    <!-- Authentication screen -->
+    <div class="screen active" id="authScreen">
+        <div class="auth-container">
+            <div class="auth-icon">🔒</div>
+            <h2 class="auth-title">Accès Privé</h2>
+            <p class="auth-subtitle">Entre le mot de passe</p>
+
+            <form class="auth-form" id="authForm">
+                <input
+                    type="password"
+                    id="passwordInput"
+                    class="password-input"
+                    placeholder="Mot de passe..."
+                    autocomplete="off"
+                >
+                <button type="submit" class="auth-button">Entrer ✨</button>
+            </form>
+
+            <p class="auth-error" id="authError"></p>
+        </div>
+    </div>
+
+    <!-- Main question screen -->
+    <div class="screen" id="questionScreen">
+        <div class="content-wrapper">
+            <!-- Image container -->
+            <div class="image-container">
+                <img src="bizou.png" alt="Notre photo" id="coupleImage" class="couple-image">
+            </div>
+
+            <h1 class="main-title">
+                <span class="title-line">Veux-tu être</span>
+                <span class="title-line highlight">ma Valentine?</span>
+            </h1>
+
+            <div class="subtitle">
+                <span class="heart-icon">💝</span>
+                <p>Tu illumines chaque jour de ma vie...</p>
+                <span class="heart-icon">💝</span>
+            </div>
+
+            <div class="buttons-container">
+                <button class="btn btn-yes" id="yesBtn">
+                    <span class="btn-text">Oui! 💕</span>
+                    <span class="btn-sparkle">✨</span>
+                </button>
+                <button class="btn btn-no" id="noBtn">
+                    <span class="btn-text">Non...</span>
+                </button>
+            </div>
+
+            <p class="hint-text" id="hintText"></p>
+        </div>
+    </div>
+
+    <!-- Success celebration screen -->
+    <div class="screen" id="celebrationScreen">
+        <div class="celebration-container">
+            <div class="fireworks" id="fireworks"></div>
+
+            <h1 class="celebration-title">
+                <span class="celebration-line">Hihi je savais que</span>
+                <span class="celebration-line">tu dirais oui! 💖</span>
+            </h1>
+
+            <div class="love-message">
+                <p class="message-line">Tu es la personne la plus merveilleuse,</p>
+                <p class="message-line">la plus belle, la plus drôle de l'univers...</p>
+                <p class="message-line">Mon petit cœur en sucre 🍭</p>
+                <p class="message-line">Chaque moment avec toi est magique uwu ✨</p>
+                <p class="message-line">T'es ma petite princesse adorée hihi 👑</p>
+                <p class="message-line special">Je t'aime de tout mon petit cœur! 💕</p>
+            </div>
+
+            <div class="hearts-explosion" id="heartsExplosion"></div>
+
+            <div class="final-message">
+                <span class="cupid">💘</span>
+                <p>Prépare-toi pour la plus belle Saint-Valentin de ta viiiiie! 🥰</p>
+                <span class="cupid">💘</span>
+            </div>
+
+            <button class="secret-button" id="secretBtn">Clique ici pour une surprise... 🎁</button>
+        </div>
+    </div>
+
+    <!-- Horror screen -->
+    <div class="screen horror-screen" id="horrorScreen">
+        <div class="horror-container">
+            <div class="blood-drip" id="bloodDrip"></div>
+            <div class="glitch-overlay"></div>
+
+            <h1 class="horror-title">
+                <span class="horror-line glitch" data-text="T'AS CRU QUE">T'AS CRU QUE</span>
+                <span class="horror-line glitch" data-text="T'ALLAIS T'EN SORTIR">T'ALLAIS T'EN SORTIR</span>
+                <span class="horror-line glitch" data-text="COMME ÇA?">COMME ÇA?</span>
+            </h1>
+
+            <div class="horror-message">
+                <p class="horror-text shake">TU ES TOMBÉE</p>
+                <p class="horror-text flicker">DANS MON PIÈGE</p>
+                <p class="horror-text pulse">MOUAHAHAHA</p>
+            </div>
+
+            <div class="skull-container">
+                <div class="skull">💀</div>
+            </div>
+
+            <p class="horror-kisses">bisous</p>
+
+            <div class="static-noise"></div>
+        </div>
+    </div>
+
+    <script src="script.js?v=3004"></script>
+</body>
+</html>

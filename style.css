@@ -1,0 +1,1120 @@
+:root {
+    /* Soft pastel palette */
+    --pastel-pink: #FFB3D9;
+    --pastel-rose: #FFC8DD;
+    --pastel-peach: #FFAFCC;
+    --pastel-lavender: #E4C1F9;
+    --pastel-blue: #D0D1FF;
+    --pastel-mint: #C7F0DB;
+    --pastel-cream: #FFF4F0;
+    --pastel-yellow: #FFF6B7;
+    --text-dark: #7D5A8B;
+    --text-light: #FFF;
+
+    /* Fonts */
+    --font-title: 'Pacifico', cursive;
+    --font-body: 'Quicksand', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    background: linear-gradient(135deg, var(--pastel-cream) 0%, var(--pastel-rose) 50%, var(--pastel-lavender) 100%);
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+/* Floating hearts background animation */
+.hearts-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.floating-heart {
+    position: absolute;
+    font-size: 20px;
+    opacity: 0;
+    animation: floatUp 8s ease-in infinite;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.6;
+    }
+    90% {
+        opacity: 0.6;
+    }
+    100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Screen management */
+.screen {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+.screen.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Authentication Screen */
+.auth-container {
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 3rem 2rem;
+    box-shadow: 0 10px 40px rgba(255, 179, 217, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.9);
+}
+
+.auth-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    animation: fadeInDown 0.8s ease-out;
+}
+
+.auth-title {
+    font-family: var(--font-body);
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+    animation: fadeInDown 0.8s ease-out 0.2s backwards;
+}
+
+.auth-subtitle {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: #999;
+    margin-bottom: 2rem;
+    animation: fadeIn 0.8s ease-out 0.4s backwards;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    animation: fadeIn 0.8s ease-out 0.6s backwards;
+}
+
+.password-input {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    padding: 1rem 1.5rem;
+    border: 2px solid var(--pastel-pink);
+    border-radius: 15px;
+    background: white;
+    color: var(--text-dark);
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.password-input:focus {
+    border-color: var(--pastel-peach);
+    box-shadow: 0 0 0 3px rgba(255, 175, 204, 0.1);
+}
+
+.password-input::placeholder {
+    color: #ccc;
+}
+
+.auth-button {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 15px;
+    background: linear-gradient(135deg, var(--pastel-pink), var(--pastel-peach));
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(255, 175, 204, 0.3);
+}
+
+.auth-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 175, 204, 0.4);
+}
+
+.auth-button:active {
+    transform: translateY(0);
+}
+
+.auth-error {
+    margin-top: 1rem;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: #DC143C;
+    min-height: 20px;
+    animation: shake 0.5s ease;
+}
+
+/* Question Screen Styles */
+.content-wrapper {
+    text-align: center;
+    max-width: 90%;
+    width: 100%;
+    max-width: 600px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px);
+    border-radius: 40px;
+    padding: 2rem 1.5rem;
+    box-shadow: 0 20px 60px rgba(255, 179, 217, 0.4);
+    border: 3px solid rgba(255, 255, 255, 0.8);
+    animation: slideInScale 1s ease-out;
+    position: relative;
+    box-sizing: border-box;
+    max-height: 90vh;
+    overflow: visible;
+    z-index: 1;
+}
+
+@keyframes slideInScale {
+    0% {
+        transform: scale(0.8) translateY(50px);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Image upload section */
+.image-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 2rem;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid var(--pastel-pink);
+    box-shadow: 0 10px 30px rgba(255, 175, 204, 0.4);
+    background: linear-gradient(135deg, var(--pastel-peach), var(--pastel-lavender));
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 10px 30px rgba(255, 175, 204, 0.4);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 15px 40px rgba(255, 175, 204, 0.6);
+    }
+}
+
+.couple-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.9;
+}
+
+.upload-label {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.95);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.upload-label:hover {
+    background: var(--pastel-pink);
+    color: white;
+    transform: translateX(-50%) scale(1.05);
+}
+
+.upload-icon {
+    font-size: 1.2rem;
+}
+
+/* Title styles */
+.main-title {
+    font-family: var(--font-title);
+    font-size: 3rem;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+}
+
+.title-line {
+    display: block;
+    animation: fadeInDown 1s ease-out backwards;
+}
+
+.title-line:nth-child(1) {
+    animation-delay: 0.3s;
+}
+
+.title-line:nth-child(2) {
+    animation-delay: 0.6s;
+}
+
+.title-line.highlight {
+    background: linear-gradient(135deg, var(--pastel-pink), var(--pastel-peach), var(--pastel-lavender));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 3.5rem;
+    animation: fadeInDown 1s ease-out backwards, shimmer 3s ease-in-out infinite;
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes shimmer {
+    0%, 100% {
+        filter: brightness(1);
+    }
+    50% {
+        filter: brightness(1.2);
+    }
+}
+
+/* Subtitle */
+.subtitle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+    animation: fadeIn 1s ease-out 0.9s backwards;
+}
+
+.subtitle p {
+    font-size: 1.2rem;
+    color: var(--text-dark);
+    font-weight: 500;
+}
+
+.heart-icon {
+    font-size: 1.5rem;
+    animation: heartBeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartBeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.2);
+    }
+    50% {
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Buttons container */
+.buttons-container {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    position: relative;
+    min-height: 70px;
+}
+
+.btn {
+    font-family: var(--font-body);
+    font-size: 1.3rem;
+    font-weight: 700;
+    padding: 1rem 2.5rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn-text {
+    position: relative;
+    z-index: 2;
+}
+
+/* Yes button */
+.btn-yes {
+    background: linear-gradient(135deg, var(--pastel-pink), var(--pastel-peach));
+    color: white;
+    animation: fadeInScale 1s ease-out 1.2s backwards;
+}
+
+.btn-yes:hover {
+    transform: scale(1.1) rotate(-2deg);
+    box-shadow: 0 15px 35px rgba(255, 175, 204, 0.4);
+}
+
+.btn-sparkle {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 1.5rem;
+    animation: sparkle 1.5s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+    0%, 100% {
+        transform: rotate(0deg) scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: rotate(180deg) scale(1.3);
+        opacity: 0.7;
+    }
+}
+
+@keyframes fadeInScale {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* No button */
+.btn-no {
+    background: linear-gradient(135deg, #E8E8E8, #D0D0D0);
+    color: #666;
+    animation: fadeInScale 1s ease-out 1.4s backwards;
+    transition: all 0.2s ease;
+}
+
+.btn-no:hover {
+    background: linear-gradient(135deg, #F0F0F0, #E0E0E0);
+}
+
+/* When no button is moving */
+.btn-no.moving {
+    position: fixed !important;
+    z-index: 9999 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+    pointer-events: auto !important;
+    background: linear-gradient(135deg, #E8E8E8, #D0D0D0) !important;
+}
+
+/* Hint text */
+.hint-text {
+    font-size: 1rem;
+    color: var(--text-dark);
+    font-weight: 600;
+    font-style: italic;
+    min-height: 30px;
+    animation: fadeIn 0.5s ease;
+}
+
+/* Celebration Screen */
+.celebration-container {
+    text-align: center;
+    max-width: 90%;
+    width: 100%;
+    max-width: 700px;
+    position: relative;
+    z-index: 10;
+    padding: 1rem;
+    box-sizing: border-box;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.fireworks {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.firework {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    animation: explode 1.5s ease-out forwards;
+}
+
+@keyframes explode {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--tx), var(--ty)) scale(0);
+        opacity: 0;
+    }
+}
+
+.celebration-title {
+    font-family: var(--font-title);
+    font-size: 4rem;
+    background: linear-gradient(135deg, var(--pastel-pink), var(--pastel-peach), var(--pastel-lavender));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 2rem;
+    line-height: 1.2;
+    text-shadow: 0 5px 15px rgba(255, 179, 217, 0.3);
+}
+
+.celebration-line {
+    display: block;
+    animation: bounceIn 1s ease-out backwards;
+}
+
+.celebration-line:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.celebration-line:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3) translateY(-50px);
+    }
+    50% {
+        transform: scale(1.1) translateY(0);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.love-message {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 30px;
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 20px 60px rgba(255, 179, 217, 0.4);
+    border: 3px solid rgba(255, 255, 255, 0.9);
+}
+
+.message-line {
+    font-size: 1.4rem;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+    font-weight: 500;
+    animation: fadeInUp 0.8s ease-out backwards;
+}
+
+.message-line:nth-child(1) { animation-delay: 0.8s; }
+.message-line:nth-child(2) { animation-delay: 1.1s; }
+.message-line:nth-child(3) { animation-delay: 1.4s; }
+.message-line:nth-child(4) { animation-delay: 1.7s; }
+
+.message-line.special {
+    font-size: 1.8rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--pastel-pink), var(--pastel-peach));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-top: 1rem;
+    margin-bottom: 0;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hearts-explosion {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 8;
+}
+
+.exploding-heart {
+    position: absolute;
+    font-size: 30px;
+    animation: explodeHeart 2s ease-out forwards;
+}
+
+@keyframes explodeHeart {
+    0% {
+        transform: translate(0, 0) scale(0) rotate(0deg);
+        opacity: 1;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--tx), var(--ty)) scale(1.5) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.final-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 1.3rem;
+    color: var(--text-dark);
+    font-weight: 600;
+    animation: fadeIn 1s ease-out 2s backwards;
+}
+
+.cupid {
+    font-size: 2rem;
+    animation: bounce 1s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 2rem;
+    }
+
+    .title-line.highlight {
+        font-size: 2.5rem;
+    }
+
+    .content-wrapper {
+        padding: 1.5rem 1rem;
+        max-height: 95vh;
+    }
+
+    .celebration-title {
+        font-size: 2.5rem;
+    }
+
+    .message-line {
+        font-size: 1.1rem;
+    }
+
+    .message-line.special {
+        font-size: 1.4rem;
+    }
+
+    .btn {
+        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
+    }
+
+    .buttons-container {
+        gap: 1rem;
+        min-height: 60px;
+    }
+
+    .image-container {
+        width: 150px;
+        height: 150px;
+        margin-bottom: 1.5rem;
+    }
+
+    .subtitle p {
+        font-size: 1rem;
+    }
+
+    .screen {
+        padding: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-title {
+        font-size: 1.5rem;
+    }
+
+    .title-line.highlight {
+        font-size: 2rem;
+    }
+
+    .celebration-title {
+        font-size: 2rem;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+        padding: 0.7rem 1.2rem;
+    }
+}
+
+/* Secret Button */
+.secret-button {
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    background: linear-gradient(135deg, var(--pastel-lavender), var(--pastel-blue));
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    animation: fadeIn 1s ease-out 3s backwards;
+}
+
+.secret-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 35px rgba(212, 193, 249, 0.4);
+}
+
+/* Horror Screen Styles */
+.horror-screen {
+    background: #000000;
+    z-index: 100;
+}
+
+.horror-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Blood drip effect */
+.blood-drip {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 101;
+}
+
+.blood-drop {
+    position: absolute;
+    width: 3px;
+    background: linear-gradient(to bottom, #8B0000, #DC143C);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    animation: drip 2s ease-in forwards;
+}
+
+@keyframes drip {
+    0% {
+        height: 0;
+        top: 0;
+        opacity: 1;
+    }
+    100% {
+        height: 100vh;
+        top: 0;
+        opacity: 0.8;
+    }
+}
+
+/* Glitch overlay */
+.glitch-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(255, 0, 0, 0.1) 0px,
+        transparent 1px,
+        transparent 2px,
+        rgba(255, 0, 0, 0.1) 3px
+    );
+    pointer-events: none;
+    z-index: 102;
+    animation: glitchScan 8s linear infinite;
+}
+
+@keyframes glitchScan {
+    0%, 100% {
+        opacity: 0.05;
+    }
+    50% {
+        opacity: 0.15;
+    }
+}
+
+/* Horror title */
+.horror-title {
+    font-family: 'Impact', 'Arial Black', sans-serif;
+    font-size: 5rem;
+    color: #8B0000;
+    text-align: center;
+    margin-bottom: 3rem;
+    z-index: 103;
+    text-shadow:
+        0 0 10px #DC143C,
+        0 0 20px #DC143C,
+        0 0 30px #DC143C,
+        5px 5px 0px #000;
+    letter-spacing: 0.2rem;
+}
+
+.horror-line {
+    display: block;
+    animation: horror-appear 0.5s ease-out backwards;
+}
+
+.horror-line:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.horror-line:nth-child(2) {
+    animation-delay: 0.7s;
+}
+
+@keyframes horror-appear {
+    0% {
+        opacity: 0;
+        transform: scale(3) rotate(10deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+/* Glitch effect */
+.glitch {
+    position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.glitch::before {
+    animation: glitch-1 2.5s infinite;
+    color: #FF0000;
+    z-index: -1;
+}
+
+.glitch::after {
+    animation: glitch-2 2.5s infinite;
+    color: #00FF00;
+    z-index: -2;
+}
+
+@keyframes glitch-1 {
+    0%, 100% {
+        transform: translate(0);
+    }
+    20% {
+        transform: translate(-3px, 3px);
+    }
+    40% {
+        transform: translate(-3px, -3px);
+    }
+    60% {
+        transform: translate(3px, 3px);
+    }
+    80% {
+        transform: translate(3px, -3px);
+    }
+}
+
+@keyframes glitch-2 {
+    0%, 100% {
+        transform: translate(0);
+    }
+    20% {
+        transform: translate(3px, -3px);
+    }
+    40% {
+        transform: translate(3px, 3px);
+    }
+    60% {
+        transform: translate(-3px, -3px);
+    }
+    80% {
+        transform: translate(-3px, 3px);
+    }
+}
+
+/* Horror messages */
+.horror-message {
+    z-index: 103;
+    margin-bottom: 3rem;
+}
+
+.horror-text {
+    font-family: 'Courier New', monospace;
+    font-size: 1.8rem;
+    color: #DC143C;
+    text-align: center;
+    margin: 1.5rem 0;
+    font-weight: bold;
+    letter-spacing: 0.3rem;
+    text-shadow: 2px 2px 4px #000;
+}
+
+/* Shake animation */
+.shake {
+    animation: shake 0.5s infinite, fadeInHorror 1s ease-out 1.2s backwards;
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-10px) rotate(-1deg);
+    }
+    75% {
+        transform: translateX(10px) rotate(1deg);
+    }
+}
+
+/* Flicker animation */
+.flicker {
+    animation: flicker 3s infinite, fadeInHorror 1s ease-out 1.6s backwards;
+}
+
+@keyframes flicker {
+    0%, 100% {
+        opacity: 1;
+    }
+    41%, 43% {
+        opacity: 0.3;
+    }
+    45%, 47% {
+        opacity: 1;
+    }
+    49%, 51% {
+        opacity: 0.5;
+    }
+}
+
+/* Pulse animation */
+.pulse {
+    animation: pulse-horror 2s infinite, fadeInHorror 1s ease-out 2s backwards;
+}
+
+@keyframes pulse-horror {
+    0%, 100% {
+        transform: scale(1);
+        color: #DC143C;
+    }
+    50% {
+        transform: scale(1.1);
+        color: #FF0000;
+    }
+}
+
+@keyframes fadeInHorror {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Skull */
+.skull-container {
+    z-index: 103;
+    animation: fadeIn 1s ease-out 2.5s backwards;
+}
+
+.skull {
+    font-size: 6rem;
+    animation: spin-horror 20s linear infinite, float-horror 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 20px #8B0000);
+}
+
+@keyframes spin-horror {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes float-horror {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-30px) rotate(180deg);
+    }
+}
+
+/* Static noise */
+.static-noise {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" /></filter><rect width="100" height="100" filter="url(%23noise)" opacity="0.05"/></svg>');
+    pointer-events: none;
+    opacity: 0.3;
+    z-index: 102;
+    animation: static 0.2s infinite;
+}
+
+@keyframes static {
+    0%, 100% {
+        opacity: 0.1;
+    }
+    50% {
+        opacity: 0.3;
+    }
+}
+
+/* Horror kisses */
+.horror-kisses {
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--pastel-pink);
+    z-index: 104;
+    animation: fadeIn 2s ease-out 4s backwards;
+    font-style: italic;
+}
+
+/* Responsive horror */
+@media (max-width: 768px) {
+    .horror-title {
+        font-size: 2.5rem;
+    }
+
+    .horror-text {
+        font-size: 1.2rem;
+        letter-spacing: 0.15rem;
+    }
+
+    .skull {
+        font-size: 4rem;
+    }
+
+    .horror-kisses {
+        font-size: 0.8rem;
+        bottom: 15px;
+        right: 20px;
+    }
+}
